@@ -4,6 +4,7 @@
  */
 
 #pragma once
+#include <iostream>
 #include <typeinfo>
 
 /**
@@ -37,6 +38,12 @@ namespace type {
        */
       template<typename T> any(T& value)
         : _value(new erasure_impl<typename std::decay<T&>::type>(value)) { }
+
+      /**
+       * @brief Clones an existing type::any.
+       * @param[in] value The type::any instance to clone.
+       */
+      any(any& value) : _value(value._value->clone()) { }
 
       /**
        * @brief Constructs and initializes a new type::any instance from a constant.
@@ -121,25 +128,31 @@ namespace type {
        * @return Reference to the represented value.
        */
       template<typename T> T& as() const {
-        return static_cast<erasure_impl<T>*>(_value)->value();
+        if(_value) return static_cast<erasure_impl<T>*>(_value)->value();
+        throw std::bad_cast();
       }
 
       /**
        * @brief Retrieves the type of the value represented by the type::any object.
        * @return Reference to the std::type_info structure that describes the value type.
        */
-      std::type_info const& type() const { return _value->type(); }
+      std::type_info const& type() const {
+        if(_value) return _value->type();
+        return typeid(nullptr);
+      }
 
     private:
 
       struct erasure {
         virtual ~erasure() = 0;
+        virtual erasure* clone() = 0;
         virtual std::type_info const& type() const = 0;
       };
 
       template<typename T> class erasure_impl : public erasure {
         public:
           erasure_impl(T value) : _value(value) { }
+          virtual erasure* clone() { return new erasure_impl<T>(_value); }
           virtual std::type_info const& type() const { return typeid(T); }
           T& value() { return _value; }
         private:
