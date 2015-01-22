@@ -60,9 +60,8 @@ Construct from an object pointer:
 
 # TODO List
 
-1. Add ability to assign from another auto instance.
-2. Add type check to type::any::as method.
-3. Add more tests.
+1. Add type check to type::any::as method.
+2. Add more tests.
 
 # Contributing
 
