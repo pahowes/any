@@ -60,3 +60,6 @@ add_test(test_any_construct_object test_any_construct_object)
 add_executable(test_any_construct_object_pointer ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_object_pointer.cpp)
 add_test(test_any_construct_object_pointer test_any_construct_object_pointer)
 
+add_executable(test_any_type ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_type.cpp)
+add_test(test_any_type test_any_type)
+

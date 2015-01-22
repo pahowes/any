@@ -124,23 +124,30 @@ namespace type {
         return static_cast<erasure_impl<T>*>(_value)->value();
       }
 
+      /**
+       * @brief Retrieves the type of the value represented by the type::any object.
+       * @return Reference to the std::type_info structure that describes the value type.
+       */
+      std::type_info const& type() const { return _value->type(); }
+
     private:
 
-      struct erasure { };
+      struct erasure {
+        virtual ~erasure() = 0;
+        virtual std::type_info const& type() const = 0;
+      };
 
       template<typename T> class erasure_impl : public erasure {
         public:
           erasure_impl(T value) : _value(value) { }
-
-          T& value() {
-            return _value;
-          }
-
+          virtual std::type_info const& type() const { return typeid(T); }
+          T& value() { return _value; }
         private:
           T _value;
       };
 
       erasure* _value;
   };
-}
 
+  any::erasure::~erasure() { }
+}
