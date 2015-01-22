@@ -40,6 +40,12 @@ namespace type {
         : _value(new erasure_impl<typename std::decay<T&>::type>(value)) { }
 
       /**
+       * @brief Copy constructor.
+       * @param[in] value The type::any instance to copy.
+       */
+      any(any const& value) : _value(value._value->clone()) { }
+
+      /**
        * @brief Clones an existing type::any.
        * @param[in] value The type::any instance to clone.
        */
