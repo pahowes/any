@@ -168,5 +168,5 @@ namespace type {
       erasure* _value;
   };
 
-  any::erasure::~erasure() { }
+  inline any::erasure::~erasure() { }
 }
