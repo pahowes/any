@@ -51,6 +51,15 @@ namespace type {
       any(any& value) : _value(value._value->clone()) { }
 
       /**
+       * @brief Copy assignment operator
+       * @param[in] value The type::any instance to copy and assign
+       */
+      any& operator=(const any& value) {
+        _value = value._value->clone();
+        return *this;
+      }
+
+      /**
        * @brief Constructs and initializes a new type::any instance from a constant.
        * @tparam T Value type.
        * @param[in] value Constant that the type::any instance represents.
