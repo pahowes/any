@@ -15,9 +15,11 @@ repository other than tests which also illustrate how to use `any`.
 
 * [CMake](http://www.cmake.org) 2.8.12 or newer
 * C compiler. The following have been tested:
-  * [llvm](http://llvm.org) 3.4 or newer
-  * [gcc](http://gcc.gnu.org) 4.8.3 or newer
-  * [Visual Studio](http://www.visualstudio.com)
+  * [llvm](http://llvm.org) 3.5 or newer
+  * [gcc](http://gcc.gnu.org) 4.8.2 or newer
+  * [Visual Studio 2013 Update 4](http://www.visualstudio.com)
+
+All tests have passed on OS X 10.0, Ubuntu 14.04.1, Ubuntu 14.10, and Fedora 21.
 
 ## Instructions
 
