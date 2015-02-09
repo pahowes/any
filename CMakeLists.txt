@@ -48,6 +48,33 @@ enable_testing()
 #add_executable(TEST ${CMAKE_CURRENT_SOURCE_DIR}/test/TEST.cpp)
 #add_test(TEST TEST)
 
+add_executable(test_any_assign_from_any ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_assign_from_any.cpp)
+add_test(test_any_assign_from_any test_any_assign_from_any)
+
+add_executable(test_any_assign_from_const ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_assign_from_const.cpp)
+add_test(test_any_assign_from_const test_any_assign_from_const)
+
+add_executable(test_any_assign_from_const_array ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_assign_from_const_array.cpp)
+add_test(test_any_assign_from_const_array test_any_assign_from_const_array)
+
+add_executable(test_any_assign_from_object ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_assign_from_object.cpp)
+add_test(test_any_assign_from_object test_any_assign_from_object)
+
+add_executable(test_any_assign_from_object_pointer ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_assign_from_object_pointer.cpp)
+add_test(test_any_assign_from_object_pointer test_any_assign_from_object_pointer)
+
+add_executable(test_any_construct_any_const ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_any_const.cpp)
+add_test(test_any_construct_any_const test_any_construct_any_const)
+
+add_executable(test_any_construct_any_const_array ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_any_const_array.cpp)
+add_test(test_any_construct_any_const_array test_any_construct_any_const_array)
+
+add_executable(test_any_construct_any_object ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_any_object.cpp)
+add_test(test_any_construct_any_object test_any_construct_any_object)
+
+add_executable(test_any_construct_any_object_pointer ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_any_object_pointer.cpp)
+add_test(test_any_construct_any_object_pointer test_any_construct_any_object_pointer)
+
 add_executable(test_any_construct_const ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_const.cpp)
 add_test(test_any_construct_const test_any_construct_const)
 
@@ -63,14 +90,3 @@ add_test(test_any_construct_object_pointer test_any_construct_object_pointer)
 add_executable(test_any_type ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_type.cpp)
 add_test(test_any_type test_any_type)
 
-add_executable(test_any_construct_special_any_const ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_special_any_const.cpp)
-add_test(test_any_construct_special_any_const test_any_construct_special_any_const)
-
-add_executable(test_any_construct_special_any_const_array ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_special_any_const_array.cpp)
-add_test(test_any_construct_special_any_const_array test_any_construct_special_any_const_array)
-
-add_executable(test_any_construct_special_any_object ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_special_any_object.cpp)
-add_test(test_any_construct_special_any_object test_any_construct_special_any_object)
-
-add_executable(test_any_construct_special_any_object_pointer ${CMAKE_CURRENT_SOURCE_DIR}/test/test_any_construct_special_any_object_pointer.cpp)
-add_test(test_any_construct_special_any_object_pointer test_any_construct_special_any_object_pointer)

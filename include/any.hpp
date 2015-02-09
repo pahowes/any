@@ -29,7 +29,8 @@ namespace type {
       /**
        * @brief Default constructor.
        */
-      any() : _value(nullptr) { }
+      any() : _value(nullptr) {
+      }
 
       /**
        * @brief Constructs and initializes a new type::any instance from an object reference.
@@ -37,19 +38,22 @@ namespace type {
        * @param[in] value Object that the type::any instance represents.
        */
       template<typename T> any(T& value)
-        : _value(new erasure_impl<typename std::decay<T&>::type>(value)) { }
+          : _value(new erasure_impl<typename std::decay<T&>::type>(value)) {
+      }
 
       /**
        * @brief Copy constructor.
        * @param[in] value The type::any instance to copy.
        */
-      any(any const& value) : _value(value._value->clone()) { }
+      any(any const& value) : _value(value._value->clone()) {
+      }
 
       /**
        * @brief Clones an existing type::any.
        * @param[in] value The type::any instance to clone.
        */
-      any(any& value) : _value(value._value->clone()) { }
+      any(any& value) : _value(value._value->clone()) {
+      }
 
       /**
        * @brief Constructs and initializes a new type::any instance from a constant.
@@ -57,7 +61,8 @@ namespace type {
        * @param[in] value Constant that the type::any instance represents.
        */
       template<typename T> any(T const& value)
-        : _value(new erasure_impl<typename std::decay<T const&>::type>(value)) { }
+          : _value(new erasure_impl<typename std::decay<T const&>::type>(value)) {
+      }
 
       /**
        * @brief Constructs and initializes a new type::any instance from an object pointer.
@@ -65,7 +70,8 @@ namespace type {
        * @param[in] value Object pointer that the type::any instance represents.
        */
       template<typename T> any(T* value)
-        : _value(new erasure_impl<typename std::decay<T*>::type>(value)) { }
+          : _value(new erasure_impl<typename std::decay<T*>::type>(value)) {
+      }
 
       /**
        * @brief Constructs and initializes a new type::any instance from an array or const pointer.
@@ -73,12 +79,17 @@ namespace type {
        * @param[in] value Array or pointer that the type::any instance represents.
        */
       template<typename T> any(T const* value)
-        : _value(new erasure_impl<typename std::decay<T const*>::type>(value)) { }
+          : _value(new erasure_impl<typename std::decay<T const*>::type>(value)) {
+      }
 
       /**
        * @brief Object destructor.
        */
-      ~any() { if(_value) delete _value; }
+      ~any() {
+        if(_value) {
+          delete _value;
+        }
+      }
 
       /**
        * @brief Sets the value of the type::any instance from an object reference.
@@ -87,7 +98,10 @@ namespace type {
        * @return Reference to the type::any instance.
        */
       template<typename T> any& operator=(T& value) {
-        if(_value) delete _value;
+        if(_value) {
+          delete _value;
+        }
+
         _value = new erasure_impl<typename std::decay<T&>::type>(value);
         return *this;
       }
@@ -99,7 +113,10 @@ namespace type {
        * @return Reference to the type::any instance.
        */
       template<typename T> any& operator=(T const& value) {
-        if(_value) delete _value;
+        if(_value) {
+          delete _value;
+        }
+
         _value = new erasure_impl<typename std::decay<T const&>::type>(value);
         return *this;
       }
@@ -111,7 +128,10 @@ namespace type {
        * @return Reference to the type::any instance.
        */
       template<typename T> any& operator=(T* value) {
-        if(_value) delete _value;
+        if(_value) {
+          delete _value;
+        }
+
         _value = new erasure_impl<typename std::decay<T*>::type>(value);
         return *this;
       }
@@ -123,8 +143,24 @@ namespace type {
        * @return Reference to the type::any instance.
        */
       template<typename T> any& operator=(T const* value) {
-        if(_value) delete _value;
+        if(_value) {
+          delete _value;
+        }
+
         _value = new erasure_impl<typename std::decay<T const*>::type>(value);
+        return *this;
+      }
+
+      /**
+       * @brief Copy assignment operator
+       * @param[in] value The type::any instance to copy and assign
+       */
+      any& operator=(any const& value) {
+        if(_value) {
+          delete _value;
+        }
+
+        _value = value._value->clone();
         return *this;
       }
 
