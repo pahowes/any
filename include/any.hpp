@@ -186,7 +186,7 @@ namespace type {
     private:
 
       struct erasure {
-        virtual ~erasure() = 0;
+        virtual ~erasure();
         virtual erasure* clone() = 0;
         virtual std::type_info const& type() const = 0;
       };
@@ -204,5 +204,5 @@ namespace type {
       erasure* _value;
   };
 
-  inline any::erasure::~erasure() { }
+  any::erasure::~erasure() { }
 }

@@ -3,17 +3,19 @@ project(any)
 
 # Configures the compiler, regardless of the build type.
 if("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
-  add_definitions(-std=c++11
-                  -stdlib=libc++
-                  -Weverything
-                  -Wno-c++98-compat
-                  -Wno-missing-prototypes
+  add_definitions(-std=c++11                # Use the modern language.
+                  -stdlib=libc++            # Use the modern library.
+                  -Weverything              # Display every warning possible.
+                  -Wno-c++98-compat         # Compiling for C++11; don't care about 98
+                  -Wno-missing-prototypes   # Stupid warning.
+                  -Wno-padded               # Don't care about padding.
+                  -Wno-float-equal          # Just to keep the tests happy.
                   )
 elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
-  add_definitions(-std=c++11
-                  -Wall
-                  -Wextra
-                  -Wpedantic
+  add_definitions(-std=c++11                # Use the modern language
+                  -Wall                     #
+                  -Wextra                   #
+                  -Wpedantic                # Display every warning possible.
                   )
 endif()
 
