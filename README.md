@@ -19,7 +19,7 @@ repository other than tests which also illustrate how to use `any`.
   * [gcc](http://gcc.gnu.org) 4.8.2 or newer
   * [Visual Studio 2013 Update 4](http://www.visualstudio.com)
 
-All tests have passed on OS X 10.0, Ubuntu 14.04.1, Ubuntu 14.10, and Fedora 21.
+All tests have passed on OS X 10.10, Ubuntu 14.04.1, Ubuntu 14.10, and Fedora 21.
 
 ## Instructions
 
