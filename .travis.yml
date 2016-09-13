@@ -1,5 +1,15 @@
 language: cpp
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+
+    packages:
+      - cmake
+      - cmake-data
+      - doxygen
+
 compiler:
   - clang
   - gcc
@@ -11,4 +21,5 @@ before_script:
 
 script:
   - make
+  - make doc
   - make test
