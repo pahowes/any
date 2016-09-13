@@ -4,15 +4,19 @@ addons:
   apt:
     sources:
       - george-edison55-precise-backports
+      - ubuntu-toolchain-r-test
 
     packages:
+      - clang
       - cmake
       - cmake-data
       - doxygen
+      - gcc-6
+      - g++-6
 
 compiler:
   - clang
-  - gcc
+  - gcc-6
 
 before_script:
   - mkdir build
