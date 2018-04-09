@@ -19,10 +19,6 @@ addons:
 
 matrix:
   include:
-    # Default on Trusty is gcc-4.8.4
-    - compiler: g++
-      env: COMPILER=g++
-
     # Install and test with gcc-5.4.1
     - compiler: g++-5
       env: COMPILER=g++-5
@@ -80,6 +76,30 @@ matrix:
           sources: *apt_sources
           packages:
             - clang-7
+
+    # Install and test on MacOS with Xcode 8.3
+    - compiler: clang++
+      env: COMPILER=clang++
+      os: osx
+      osx_image: xcode8.3
+
+    # Install and test on MacOS with Xcode 9
+    - compiler: clang++
+      env: COMPILER=clang++
+      os: osx
+      osx_image: xcode9
+
+    # Install and test on MacOS with Xcode 9.1
+    - compiler: clang++
+      env: COMPILER=clang++
+      os: osx
+      osx_image: xcode9.1
+
+    # Install and test on MacOS with Xcode 9.2
+    - compiler: clang++
+      env: COMPILER=clang++
+      os: osx
+      osx_image: xcode9.2
 
 before_script:
   - mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=$COMPILER ..
