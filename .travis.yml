@@ -1,44 +1,88 @@
-language: cpp
+language: c++
+os: linux
+dist: trusty
+sudo: false
 
 addons:
   apt:
-    sources:
-      - george-edison55-precise-backports
-      - llvm-toolchain-precise-3.6
+    sources: &apt_sources
+      # Distributions for LLVM may be found here: http://apt.llvm.org/trusty/dists/
+      - llvm-toolchain-trusty-4.0
+      - llvm-toolchain-trusty-6.0
+      - llvm-toolchain-trusty
       - ubuntu-toolchain-r-test
 
     packages:
-      - clang-3.6
+      # Packages needed for all of the builds.
       - cmake
       - cmake-data
-      - doxygen
-      - gcc-4.9
-      - g++-4.9
-      - gcc-5
-      - g++-5
-      - gcc-6
-      - g++-6
 
 matrix:
   include:
-    - compiler: gcc
-      env: COMPILER=g++-4.9
+    # Default on Trusty is gcc-4.8.4
+    - compiler: g++
+      env: COMPILER=g++
 
-    - compiler: gcc
+    # Install and test with gcc-5.4.1
+    - compiler: g++-5
       env: COMPILER=g++-5
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - g++-5
 
-    - compiler: gcc
+    # Install and test with gcc-6.3.0
+    - compiler: g++-6
       env: COMPILER=g++-6
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - g++-6
 
-    - compiler: clang
-      env: COMPILER=clang++-3.6
+    # Install and test with gcc-7.2.0
+    - compiler: g++-7
+      env: COMPILER=g++-7
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - g++-7
+
+    # Install and test with Clang 4.0.1
+    - compiler: clang++-4.0
+      env: COMPILER=clang++-4.0
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - clang-4.0
+
+    # Default on Trusty is Clang 5.0.0
+    - compiler: clang++
+      env: COMPILER=clang++
+
+    # Install and test with Clang 6.0.1
+    - compiler: clang++-6.0
+      env: COMPILER=clang++-6.0
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - clang-6.0
+
+    # Install and test with Clang 7
+    - compiler: clang++-7
+      env: COMPILER=clang++-7
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - clang-7
 
 before_script:
-  - mkdir build
-  - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$COMPILER ..
+  - mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=$COMPILER ..
 
 script:
-  - make
-  - make doc
-  - make test
+  - make && make test
