@@ -4,6 +4,11 @@
  */
 
 #pragma once
+
+#if __cplusplus >= 201703
+#pragma message("When building projects with support for C++17 or higher, please use std::any")
+#endif
+
 #include <type_traits>
 #include <typeinfo>
 
